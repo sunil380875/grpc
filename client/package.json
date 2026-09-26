@@ -1,0 +1,17 @@
+{
+  "name": "grpc2",
+  "version": "1.0.0",
+  "description": "Service B — gRPC client that talks to Service A (grpc1:50051)",
+  "main": "grpc.js",
+  "scripts": {
+    "start": "node grpc.js",
+    "dev": "nodemon grpc.js"
+  },
+  "dependencies": {
+    "@grpc/grpc-js": "^1.14.4",
+    "@grpc/proto-loader": "^0.8.1"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.14"
+  }
+}

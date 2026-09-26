@@ -1,0 +1,27 @@
+{
+  "name": "grpc",
+  "version": "1.0.0",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start:express": "node server.js",
+    "start:grpc":   "node grpc.js",
+    "dev:express":  "nodemon server.js",
+    "dev:grpc":     "nodemon grpc.js",
+    "dev":  "nodemon grpc.js",
+    "start": "node grpc.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "@grpc/grpc-js": "^1.14.4",
+    "@grpc/proto-loader": "^0.8.1",
+    "express": "^5.2.1"
+  },
+  "devDependencies": {
+    "concurrently": "^10.0.5",
+    "nodemon": "^3.1.14"
+  }
+}

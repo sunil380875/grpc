@@ -1,0 +1,56 @@
+syntax = "proto3";
+
+package user;
+
+// ── Service A (grpc1 - port 50051): The Server / Data Provider ──────────────
+service UserService {
+    // Client calls this to GET a user (unary)
+    rpc GetUser (UserRequest) returns (UserResponse);
+
+    // Client calls this when received data is incorrect / needs correction
+    rpc ValidateUser (ValidateRequest) returns (ValidateResponse);
+
+    // Client subscribes; server streams every new user posted via HTTP (server-side streaming)
+    rpc WatchUser (WatchRequest) returns (stream UserEvent);
+}
+
+message UserRequest {
+    int32 id = 1;
+}
+
+message UserResponse {
+    int32  id      = 1;
+    string name    = 2;
+    string email   = 3;
+    bool   success = 4;
+    string message = 5;
+}
+
+// ── Watch RPC ────────────────────────────────────────────────────────────────
+message WatchRequest {
+    string subscriber_id = 1;   // optional label for the subscriber
+}
+
+message UserEvent {
+    int32  id        = 1;
+    string name      = 2;
+    string email     = 3;
+    string event     = 4;   // e.g. "USER_CREATED"
+    string timestamp = 5;
+}
+
+// ── Validation RPC: Client sends back what it received for server to confirm ─
+message ValidateRequest {
+    int32  id         = 1;
+    string name       = 2;
+    string email      = 3;
+    string error_info = 4;   // what was wrong on the client side
+}
+
+message ValidateResponse {
+    bool   valid   = 1;
+    int32  id      = 2;
+    string name    = 3;
+    string email   = 4;
+    string message = 5;   // server's correction / confirmation
+}

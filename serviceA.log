@@ -1,0 +1,22 @@
+[Service A] 🌐 Express Server running on http://localhost:3000
+[Service A]    POST http://localhost:3000/user  → triggers gRPC stream
+[Service A] ⚡ gRPC Server running on port 50051
+[Service A]    Waiting for Service B to subscribe...
+
+[Service A] 📡 New watch subscriber: "service-b"
+[Service A] 📥 HTTP POST /user → { id: 1, name: 'Sunil', email: 'sunil@yopmail.com' }
+[Service A] 🚀 Pushing event to "service-b": {
+  id: 1,
+  name: 'Sunil',
+  email: 'sunil@yopmail.com',
+  event: 'USER_CREATED',
+  timestamp: '2026-09-23T14:32:15.802Z'
+}
+[Service A] 📥 HTTP POST /user → { id: 2, name: 'Ravi', email: 'ravi@yopmail.com' }
+[Service A] 🚀 Pushing event to "service-b": {
+  id: 2,
+  name: 'Ravi',
+  email: 'ravi@yopmail.com',
+  event: 'USER_CREATED',
+  timestamp: '2026-09-23T14:32:16.822Z'
+}
